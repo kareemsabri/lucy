@@ -13,7 +13,7 @@ class BoardsViewController: UIViewController {
     fileprivate let titleLabel = UILabel()
     fileprivate let viewCountLabel = UILabel()
     fileprivate let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    fileprivate let addNewButton = UIButton()
+    fileprivate let addNewButton = UIButton(type: .system)
     fileprivate var boards = [Board(id: 1), Board(id: 2), Board(id: 3)]
     fileprivate let formatter = DateFormatter()
     
@@ -47,20 +47,18 @@ class BoardsViewController: UIViewController {
         
         let layout = UICollectionViewFlowLayout()
         layout.estimatedItemSize = CGSize(width: UIScreen.main.bounds.width - 32, height: 100)
-        layout.minimumLineSpacing = 40
-        
+        layout.minimumLineSpacing = 20.0
         self.collectionView.collectionViewLayout = layout
         
         self.addNewButton.backgroundColor = .black
         self.addNewButton.setTitle("+", for: .normal)
+        self.addNewButton.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 8.0, right: 0.0)
         self.addNewButton.setTitleColor(.white, for: .normal)
-        self.addNewButton.titleLabel!.font = UIFont.boldSystemFont(ofSize: 48)
+        self.addNewButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 48)
         self.addNewButton.translatesAutoresizingMaskIntoConstraints = false
         self.addNewButton.layer.cornerRadius = 10
         self.addNewButton.addTarget(self, action: #selector(BoardsViewController.newButtonTapped), for: .touchUpInside)
         self.view.addSubview(self.addNewButton)
-        self.addNewButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        
         
         //add constraints
         let views = ["collection": self.collectionView, "title": self.titleLabel, "viewCount": self.viewCountLabel, "button": self.addNewButton]
@@ -71,8 +69,10 @@ class BoardsViewController: UIViewController {
         
         let collectionConstraintsH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[collection]-16-|", options: [], metrics: nil, views: views)
         let collectionConstraintsV = NSLayoutConstraint.constraints(withVisualFormat: "V:[viewCount]-10-[collection]|", options: [], metrics: nil, views: views)
-        let buttonConstraintsV = NSLayoutConstraint.constraints(withVisualFormat: "V:[button]-40-|", options: [], metrics: nil, views: views)
-        let buttonConstraintsH = NSLayoutConstraint.constraints(withVisualFormat: "[button(60)]", options: [], metrics: nil, views: views)
+        let buttonConstraintsV = NSLayoutConstraint.constraints(withVisualFormat: "V:[button(64)]-40-|", options: [], metrics: nil, views: views)
+        let buttonConstraintsH = NSLayoutConstraint.constraints(withVisualFormat: "[button(64)]", options: [], metrics: nil, views: views)
+        
+        self.addNewButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         self.view.addConstraints(titleConstraintsH + titleConstraintsV)
         self.view.addConstraints(viewCountConstraintsH + viewCountConstraintsV)
         self.view.addConstraints(collectionConstraintsH + collectionConstraintsV)
@@ -116,10 +116,30 @@ extension BoardsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         }
         cell.configure(title: board.title)
         cell.configure(subtitle: "Created \(self.formatter.string(from: board.createdAt))")
+        cell.delegate = self
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    fileprivate func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+}
+
+extension BoardsViewController: CreateBoardViewControllerDelegate {
+    func didSaveBoard(board: Board) {
+        if let index = self.boards.firstIndex(where: { $0.id == board.id }) {
+            self.boards[index] = board
+        } else {
+            self.boards.insert(board, at: 0)
+        }
+        self.collectionView.reloadData()
+    }
+}
+
+extension BoardsViewController: BoardViewCellDelegate {
+    func handleTappedOverflow(_ cell: BoardViewCell) {
+        guard let indexPath = self.collectionView.indexPath(for: cell) else { return }
         let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let deleteAction = UIAlertAction(title: "Delete Board", style: .destructive) { _ in
             self.boards.remove(at: indexPath.row)
@@ -149,21 +169,5 @@ extension BoardsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         sheet.addAction(deleteAction)
         sheet.addAction(cancelAction)
         self.present(sheet, animated: true, completion: nil)
-    }
-    
-    fileprivate func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-}
-
-extension BoardsViewController: CreateBoardViewControllerDelegate {
-    func didSaveBoard(board: Board) {
-        if let index = self.boards.firstIndex(where: { $0.id == board.id }) {
-            self.boards[index] = board
-        } else {
-            self.boards.insert(board, at: 0)
-        }
-        self.collectionView.reloadData()
     }
 }
