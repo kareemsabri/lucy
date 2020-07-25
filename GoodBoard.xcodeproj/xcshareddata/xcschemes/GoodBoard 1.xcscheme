@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "87DE90CB24CB860800106325"
-               BuildableName = "GoodBoard.app"
+               BuildableName = "Goodmood.app"
                BlueprintName = "GoodBoard"
                ReferencedContainer = "container:GoodBoard.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "87DE90CB24CB860800106325"
-            BuildableName = "GoodBoard.app"
+            BuildableName = "Goodmood.app"
             BlueprintName = "GoodBoard"
             ReferencedContainer = "container:GoodBoard.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "87DE90CB24CB860800106325"
-            BuildableName = "GoodBoard.app"
+            BuildableName = "Goodmood.app"
             BlueprintName = "GoodBoard"
             ReferencedContainer = "container:GoodBoard.xcodeproj">
          </BuildableReference>

@@ -38,6 +38,7 @@ class BoardsViewController: UIViewController {
         self.view.addSubview(self.viewCountLabel)
         
         self.formatter.dateStyle = .medium
+        self.collectionView.showsVerticalScrollIndicator = false
         self.collectionView.backgroundColor = .white
         self.collectionView.delegate = self
         self.collectionView.dataSource = self

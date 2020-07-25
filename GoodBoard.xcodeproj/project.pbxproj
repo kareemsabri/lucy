@@ -42,7 +42,7 @@
 
 /* Begin PBXFileReference section */
 		87C555AB24CB99610096900E /* CreateBoardTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBoardTitleView.swift; sourceTree = "<group>"; };
-		87DE90CC24CB860800106325 /* GoodBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		87DE90CC24CB860800106325 /* Goodmood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goodmood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87DE90CF24CB860800106325 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87DE90D124CB860800106325 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		87DE90D824CB860900106325 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 		87DE90CD24CB860800106325 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				87DE90CC24CB860800106325 /* GoodBoard.app */,
+				87DE90CC24CB860800106325 /* Goodmood.app */,
 				87DE90E224CB860900106325 /* GoodBoardTests.xctest */,
 				87DE90ED24CB860900106325 /* GoodBoardUITests.xctest */,
 			);
@@ -203,7 +203,7 @@
 			);
 			name = GoodBoard;
 			productName = GoodBoard;
-			productReference = 87DE90CC24CB860800106325 /* GoodBoard.app */;
+			productReference = 87DE90CC24CB860800106325 /* Goodmood.app */;
 			productType = "com.apple.product-type.application";
 		};
 		87DE90E124CB860900106325 /* GoodBoardTests */ = {
@@ -498,7 +498,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Lucy.GoodBoard;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Goodmood;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -516,7 +516,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Lucy.GoodBoard;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Goodmood;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
