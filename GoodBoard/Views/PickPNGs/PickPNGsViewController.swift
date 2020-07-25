@@ -9,16 +9,36 @@
 import Foundation
 import UIKit
 
+protocol PickPNGsViewControllerDelegate {
+    func didPickPNGs(images: [UIImage])
+}
+
+fileprivate extension Selector {
+    static let addToBoardTapped =
+        #selector(PickPNGsViewController.addToBoardTapped(_:))
+}
+
 class PickPNGsViewController: UIViewController {
     fileprivate let numImages = 9 //this must match the number of images in the xcassets with names PNGs 1-n
     fileprivate let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    fileprivate let titleLabel = UILabel()
+    fileprivate let addToBoardButton = UIButton()
+    
+    var delegate: PickPNGsViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .white
         
-        self.collectionView.backgroundColor = .green
+        self.titleLabel.text = "Select PNGs"
+        self.titleLabel.textAlignment = .center
+        self.titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(self.titleLabel)
+        
+        self.collectionView.backgroundColor = .white
+        self.collectionView.allowsMultipleSelection = true
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         self.collectionView.register(PNGCell.self, forCellWithReuseIdentifier: "pngCell")
@@ -28,18 +48,39 @@ class PickPNGsViewController: UIViewController {
         layout.minimumLineSpacing = 20
         self.view.addSubview(self.collectionView)
         
+        self.addToBoardButton.translatesAutoresizingMaskIntoConstraints = false
+        self.addToBoardButton.setTitle("+ Add to Board", for: .normal)
+        self.addToBoardButton.backgroundColor = .gray
+        self.addToBoardButton.layer.cornerRadius = 25.0
+        self.addToBoardButton.layer.masksToBounds = true
+        self.addToBoardButton.setTitleColor(.white, for: .normal)
+        self.addToBoardButton.isEnabled = false
+        self.addToBoardButton.addTarget(self, action: .addToBoardTapped, for: .touchUpInside)
+        self.view.addSubview(self.addToBoardButton)
         
-//        for i in 1...9 {
-//            let name = "PNG\(i)"
-//            let image = UIImage(named: name)
-//            let imageView = UIImageView(image: image)
-//            self.view.addSubview(imageView)
-//        }
-        
-        let views = ["collection": self.collectionView]
+        let views = ["title": self.titleLabel, "collection": self.collectionView, "button": self.addToBoardButton]
+        let titleConstraintsH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[title]-16-|", options: [], metrics: nil, views: views)
+        let titleConstraintsV = NSLayoutConstraint.constraints(withVisualFormat: "V:|-16-[title]", options: [], metrics: nil, views: views)
         let collectionConstraintsH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[collection]-16-|", options: [], metrics: nil, views: views)
-        let collectionConstraintsV = NSLayoutConstraint.constraints(withVisualFormat: "V:|-16-[collection]-16-|", options: [], metrics: nil, views: views)
+        let collectionConstraintsV = NSLayoutConstraint.constraints(withVisualFormat: "V:[title]-16-[collection]-16-[button]", options: [], metrics: nil, views: views)
+        let buttonConstraintsH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[button]-16-|", options: [], metrics: nil, views: views)
+        let buttonConstraintsV = NSLayoutConstraint.constraints(withVisualFormat: "V:[button(50)]-48-|", options: [], metrics: nil, views: views)
+        self.view.addConstraints(titleConstraintsH + titleConstraintsV)
         self.view.addConstraints(collectionConstraintsH + collectionConstraintsV)
+        self.view.addConstraints(buttonConstraintsH + buttonConstraintsV)
+    }
+    
+    @objc func addToBoardTapped(_: UIButton) {
+        if let paths = self.collectionView.indexPathsForSelectedItems {
+            if paths.count > 0 {
+                let images = paths.map { (path: IndexPath) -> UIImage in
+                    let cell = self.collectionView.cellForItem(at: path) as! PNGCell
+                    return cell.imageView.image!
+                }
+                
+                self.delegate?.didPickPNGs(images: images)
+            }
+        }
     }
 }
 
@@ -72,5 +113,24 @@ extension PickPNGsViewController: UICollectionViewDelegate, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell: PNGCell = collectionView.cellForItem(at: indexPath) as! PNGCell
+        cell.configure(selected: true)
+        self.addToBoardButton.isEnabled = true
+        self.addToBoardButton.backgroundColor = .black
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell: PNGCell = collectionView.cellForItem(at: indexPath) as! PNGCell
+        cell.configure(selected: false)
+        if let items = collectionView.indexPathsForSelectedItems {
+            if items.count > 0 {
+                return
+            }
+        }
+        self.addToBoardButton.isEnabled = false
+        self.addToBoardButton.backgroundColor = .gray
     }
 }

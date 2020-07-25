@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class PNGCell: UICollectionViewCell {
-    fileprivate let imageView = UIImageView()
+    let imageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -42,5 +42,13 @@ private extension PNGCell {
 extension PNGCell { //appearance
     func configure(image: UIImage) {
         self.imageView.image = image
+    }
+    
+    func configure(selected: Bool) {
+        if selected {
+            self.contentView.layer.borderColor = UIColor.black.cgColor
+        } else {
+            self.contentView.layer.borderColor = UIColor.lightGray.cgColor
+        }
     }
 }

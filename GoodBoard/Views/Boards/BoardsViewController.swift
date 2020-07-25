@@ -19,7 +19,7 @@ class BoardsViewController: UIViewController {
     fileprivate let viewCountLabel = UILabel()
     fileprivate let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     fileprivate let addNewButton = UIButton()
-    fileprivate let boards = [Board(), Board(), Board()]
+    fileprivate var boards = [Board(id: 1), Board(id: 2), Board(id: 3)]
     fileprivate let formatter = DateFormatter()
     
     override func viewDidLoad() {
@@ -87,6 +87,15 @@ class BoardsViewController: UIViewController {
     @objc func newButtonTapped(_: UIButton) {
         self.performSegue(withIdentifier: "createBoardSegue", sender: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "createBoardSegue" {
+            let createBoardViewController = segue.destination as! CreateBoardViewController
+            let board = Board(id: self.boards.count + 1)
+            createBoardViewController.board = board
+            createBoardViewController.delegate = self
+        }
+    }
 }
 
 extension BoardsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -102,10 +111,28 @@ extension BoardsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell: BoardViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "boardCell", for: indexPath) as! BoardViewCell
         
         let board = self.boards[indexPath.item]
-        let image = UIImage(named: "Board")!
-        cell.configure(image: image)
+        if let _ = board.imageName {
+            
+        } else {
+            cell.configure(image: UIImage(named: "Board")!)
+        }
         cell.configure(title: board.title)
         cell.configure(subtitle: "Created \(self.formatter.string(from: board.createdAt))")
         return cell
+    }
+}
+
+extension BoardsViewController: CreateBoardViewControllerDelegate {
+    func didSaveBoard(board: Board) {
+        let index = self.boards.firstIndex { (b: Board) -> Bool in
+            return board.id == b.id
+        }
+        if index != nil {
+            //do something
+        } else {
+            self.boards.append(board)
+            print(self.boards.count)
+            self.collectionView.reloadData()
+        }
     }
 }
