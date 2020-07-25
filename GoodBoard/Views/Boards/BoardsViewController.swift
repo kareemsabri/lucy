@@ -119,6 +119,38 @@ extension BoardsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete Board", style: .destructive) { _ in
+            self.boards.remove(at: indexPath.row)
+            self.collectionView.reloadData()
+        }
+        let renameAction = UIAlertAction(title: "Rename Board", style: .default) { _ in
+            let rename = UIAlertController(title: "Rename Board", message: "Please enter a name for your board.", preferredStyle: .alert)
+            rename.addTextField { (textField) in
+                textField.placeholder = "Name"
+            }
+            
+            let renameButton = UIAlertAction(title: "Rename", style: .default) { _ in
+                self.boards[indexPath.row].title = rename.textFields?.first?.text ?? "You're crushin' it!"
+                self.collectionView.reloadData()
+            }
+            
+            rename.addAction(renameButton)
+            
+            self.present(rename, animated: true, completion: nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        sheet.addAction(renameAction)
+        sheet.addAction(deleteAction)
+        sheet.addAction(cancelAction)
+        self.present(sheet, animated: true, completion: nil)
+    }
+    
     fileprivate func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
@@ -130,7 +162,7 @@ extension BoardsViewController: CreateBoardViewControllerDelegate {
         if let index = self.boards.firstIndex(where: { $0.id == board.id }) {
             self.boards[index] = board
         } else {
-            self.boards.append(board)
+            self.boards.insert(board, at: 0)
         }
         self.collectionView.reloadData()
     }

@@ -27,7 +27,7 @@ class Board {
     init(id: Int) {
         self.id = id
         self.imageUrl = URL(string: "https://unsplash.com/photos/tTO-0qAo65w")
-        self.title = "I'm a board"
+        self.title = "Crushing it"
         self.createdAt = Date()
         self.updatedAt = self.createdAt
     }
