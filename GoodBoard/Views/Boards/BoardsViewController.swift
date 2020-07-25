@@ -14,7 +14,7 @@ class BoardsViewController: UIViewController {
     fileprivate let viewCountLabel = UILabel()
     fileprivate let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     fileprivate let addNewButton = UIButton(type: .system)
-    fileprivate var boards = [Board(id: 1), Board(id: 2), Board(id: 3)]
+    fileprivate var boards = Board.defaultBoards
     fileprivate let formatter = DateFormatter()
     
     override func viewDidLoad() {
@@ -107,12 +107,14 @@ extension BoardsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         let board = self.boards[indexPath.item]
         if let imageName = board.imageName {
-            let filename = getDocumentsDirectory().appendingPathComponent(imageName)
-            if let image = UIImage(contentsOfFile: filename.path) {
-                cell.configure(image: image)
+            if board.id <= 7 {
+                cell.configure(image: UIImage(named: board.imageName ?? "")!)
+            } else {
+                let filename = getDocumentsDirectory().appendingPathComponent(imageName)
+                if let image = UIImage(contentsOfFile: filename.path) {
+                    cell.configure(image: image)
+                }
             }
-        } else {
-            cell.configure(image: UIImage(named: "Board")!)
         }
         cell.configure(title: board.title)
         cell.configure(subtitle: "Created \(self.formatter.string(from: board.createdAt))")
