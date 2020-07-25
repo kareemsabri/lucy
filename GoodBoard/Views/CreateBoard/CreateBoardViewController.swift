@@ -40,8 +40,9 @@ class CreateBoardViewController: UIViewController {
         let boardConstraintsV = [NSLayoutConstraint(item: self.boardBackground, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 0.0),
                                  NSLayoutConstraint(item: self.boardBackground, attribute: .width, relatedBy: .equal, toItem: self.boardBackground, attribute: .height, multiplier: 1.0, constant: 0.0)]
         let addButtonConstraintsH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[button]-16-|", options: [], metrics: nil, views: views)
-        let addButtonConstraintsV = [NSLayoutConstraint(item: self.addPNGsButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 50.0),
-                                     NSLayoutConstraint(item: self.addPNGsButton, attribute: .bottomMargin, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: -16.0)]
+        let addButtonConstraintsV = NSLayoutConstraint.constraints(withVisualFormat: "V:[button(50)]-48-|", options: [], metrics: nil, views: views)
+//        let addButtonConstraintsV = [NSLayoutConstraint(item: self.addPNGsButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 50.0),
+//                                     NSLayoutConstraint(item: self.addPNGsButton, attribute: .bottomMargin, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: -16.0)]
 
         //add constaints
         self.view.addConstraints(boardConstraintsH + boardConstraintsV)
@@ -51,7 +52,7 @@ class CreateBoardViewController: UIViewController {
 
 extension CreateBoardViewController {
     @objc func handleAddPNGs() {
-        let imagePicker = UIImagePickerController()
-        self.present(imagePicker, animated: true)
+        let pickPNGsViewController = PickPNGsViewController()
+        self.present(pickPNGsViewController, animated: true)
     }
 }

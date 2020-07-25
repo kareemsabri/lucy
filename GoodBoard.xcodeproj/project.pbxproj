@@ -8,13 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		87C555AC24CB99610096900E /* CreateBoardTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C555AB24CB99610096900E /* CreateBoardTitleView.swift */; };
-		87C555AE24CBAC5D0096900E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87C555AD24CBAC5D0096900E /* Main.storyboard */; };
 		87DE90D024CB860800106325 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DE90CF24CB860800106325 /* AppDelegate.swift */; };
 		87DE90D224CB860800106325 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DE90D124CB860800106325 /* SceneDelegate.swift */; };
-<<<<<<< HEAD
-		87DE90D724CB860800106325 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87DE90D524CB860800106325 /* Main.storyboard */; };
-=======
->>>>>>> 45049572994015ed29af07444f78fce2be38a375
 		87DE90D924CB860900106325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87DE90D824CB860900106325 /* Assets.xcassets */; };
 		87DE90DC24CB860900106325 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87DE90DA24CB860900106325 /* LaunchScreen.storyboard */; };
 		87DE90E724CB860900106325 /* GoodBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DE90E624CB860900106325 /* GoodBoardTests.swift */; };
@@ -23,6 +18,9 @@
 		87DE910424CB887C00106325 /* CreateBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DE910324CB887C00106325 /* CreateBoardViewController.swift */; };
 		87DE910624CB88FD00106325 /* BoardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DE910524CB88FD00106325 /* BoardsViewController.swift */; };
 		87DE910924CB89EB00106325 /* BoardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DE910824CB89EB00106325 /* BoardViewCell.swift */; };
+		C93B87B124CC728D00F187DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C93B87B024CC728D00F187DD /* Main.storyboard */; };
+		C93B87B424CC7FB100F187DD /* PickPNGsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93B87B324CC7FB100F187DD /* PickPNGsViewController.swift */; };
+		C93B87B624CC830900F187DD /* PNGCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93B87B524CC830900F187DD /* PNGCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,14 +42,9 @@
 
 /* Begin PBXFileReference section */
 		87C555AB24CB99610096900E /* CreateBoardTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBoardTitleView.swift; sourceTree = "<group>"; };
-		87C555AD24CBAC5D0096900E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../../Main.storyboard; sourceTree = "<group>"; };
 		87DE90CC24CB860800106325 /* GoodBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87DE90CF24CB860800106325 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87DE90D124CB860800106325 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		87DE90D624CB860800106325 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-=======
->>>>>>> 45049572994015ed29af07444f78fce2be38a375
 		87DE90D824CB860900106325 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87DE90DB24CB860900106325 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		87DE90DD24CB860900106325 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,6 +58,9 @@
 		87DE910324CB887C00106325 /* CreateBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBoardViewController.swift; sourceTree = "<group>"; };
 		87DE910524CB88FD00106325 /* BoardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsViewController.swift; sourceTree = "<group>"; };
 		87DE910824CB89EB00106325 /* BoardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewCell.swift; sourceTree = "<group>"; };
+		C93B87B024CC728D00F187DD /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C93B87B324CC7FB100F187DD /* PickPNGsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickPNGsViewController.swift; sourceTree = "<group>"; };
+		C93B87B524CC830900F187DD /* PNGCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNGCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,14 +115,10 @@
 				87DE90FF24CB877200106325 /* Models */,
 				87DE90CF24CB860800106325 /* AppDelegate.swift */,
 				87DE90D124CB860800106325 /* SceneDelegate.swift */,
-<<<<<<< HEAD
-				87DE90D524CB860800106325 /* Main.storyboard */,
-=======
->>>>>>> 45049572994015ed29af07444f78fce2be38a375
 				87DE90D824CB860900106325 /* Assets.xcassets */,
 				87DE90DA24CB860900106325 /* LaunchScreen.storyboard */,
-				87C555AD24CBAC5D0096900E /* Main.storyboard */,
 				87DE90DD24CB860900106325 /* Info.plist */,
+				C93B87B024CC728D00F187DD /* Main.storyboard */,
 			);
 			path = GoodBoard;
 			sourceTree = "<group>";
@@ -162,6 +154,7 @@
 			children = (
 				87DE910724CB89D600106325 /* Boards */,
 				87DE910A24CB917900106325 /* CreateBoard */,
+				C93B87B224CC7F8800F187DD /* PickPNGs */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -182,6 +175,15 @@
 				87C555AB24CB99610096900E /* CreateBoardTitleView.swift */,
 			);
 			path = CreateBoard;
+			sourceTree = "<group>";
+		};
+		C93B87B224CC7F8800F187DD /* PickPNGs */ = {
+			isa = PBXGroup;
+			children = (
+				C93B87B324CC7FB100F187DD /* PickPNGsViewController.swift */,
+				C93B87B524CC830900F187DD /* PNGCell.swift */,
+			);
+			path = PickPNGs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,7 +290,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87C555AE24CBAC5D0096900E /* Main.storyboard in Resources */,
+				C93B87B124CC728D00F187DD /* Main.storyboard in Resources */,
 				87DE90DC24CB860900106325 /* LaunchScreen.storyboard in Resources */,
 				87DE90D924CB860900106325 /* Assets.xcassets in Resources */,
 			);
@@ -315,14 +317,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
-=======
+				C93B87B624CC830900F187DD /* PNGCell.swift in Sources */,
 				87C555AC24CB99610096900E /* CreateBoardTitleView.swift in Sources */,
->>>>>>> 45049572994015ed29af07444f78fce2be38a375
 				87DE90D024CB860800106325 /* AppDelegate.swift in Sources */,
 				87DE910924CB89EB00106325 /* BoardViewCell.swift in Sources */,
 				87DE910124CB877F00106325 /* Board.swift in Sources */,
 				87DE90D224CB860800106325 /* SceneDelegate.swift in Sources */,
+				C93B87B424CC7FB100F187DD /* PickPNGsViewController.swift in Sources */,
 				87DE910424CB887C00106325 /* CreateBoardViewController.swift in Sources */,
 				87DE910624CB88FD00106325 /* BoardsViewController.swift in Sources */,
 			);
@@ -526,7 +527,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = GoodBoardTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -547,7 +548,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = GoodBoardTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
