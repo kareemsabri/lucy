@@ -108,7 +108,7 @@ extension BoardsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         let board = self.boards[indexPath.item]
         if let imageName = board.imageName {
-            if board.id <= 7 {
+            if board.id <= 5 {
                 cell.configure(image: UIImage(named: board.imageName ?? "")!)
             } else {
                 let filename = getDocumentsDirectory().appendingPathComponent(imageName)
