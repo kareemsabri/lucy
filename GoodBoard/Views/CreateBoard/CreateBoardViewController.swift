@@ -83,9 +83,57 @@ extension CreateBoardViewController {
     }
 }
 
+extension CreateBoardViewController {
+   @IBAction func handlePan(_ sender: UIPanGestureRecognizer) {
+      let translation = sender.translation(in: view)
+      guard let senderView = sender.view else { return }
+
+      senderView.center = CGPoint(
+        x: senderView.center.x + translation.x,
+        y: senderView.center.y + translation.y
+      )
+    
+      sender.setTranslation(.zero, in: view)
+    }
+    
+    @IBAction func handlePinch(_ sender: UIPinchGestureRecognizer) {
+        guard let senderView = sender.view else { return }
+        senderView.transform = senderView.transform.scaledBy(x: sender.scale, y: sender.scale)
+        sender.scale = 1
+    }
+    
+    @IBAction func handleRotate(_ sender: UIRotationGestureRecognizer) {
+        guard let senderView = sender.view else { return }
+        senderView.transform = senderView.transform.rotated(by: sender.rotation)
+        sender.rotation = 0
+    }
+}
+
+extension CreateBoardViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+}
+
 extension CreateBoardViewController: PickPNGsViewControllerDelegate {
     func didPickPNGs(images: [UIImage]) {
-        images.forEach { self.boardBackground.addSubview(UIImageView(image: $0)) }
+        images.forEach {
+            let imageView = UIImageView(image: $0)
+            imageView.isUserInteractionEnabled = true
+            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(CreateBoardViewController.handlePan(_:)))
+            panGesture.delegate = self
+            	
+            let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(CreateBoardViewController.handlePinch(_:)))
+            pinchGesture.delegate = self
+
+            let rotateGesture = UIRotationGestureRecognizer(target: self, action: #selector(CreateBoardViewController.handleRotate(_:)))
+            rotateGesture.delegate = self
+            
+            imageView.addGestureRecognizer(panGesture)
+            imageView.addGestureRecognizer(pinchGesture)
+            imageView.addGestureRecognizer(rotateGesture)
+            self.boardBackground.addSubview(imageView)
+        }
         self.dismiss(animated: true)
         self.didSave()
     }
