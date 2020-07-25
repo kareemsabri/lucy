@@ -9,11 +9,6 @@
 import Foundation
 import UIKit
 
-fileprivate extension Selector {
-    static let newButtonTapped =
-        #selector(BoardsViewController.newButtonTapped(_:))
-}
-
 class BoardsViewController: UIViewController {
     fileprivate let titleLabel = UILabel()
     fileprivate let viewCountLabel = UILabel()
@@ -62,7 +57,7 @@ class BoardsViewController: UIViewController {
         self.addNewButton.titleLabel!.font = UIFont.boldSystemFont(ofSize: 48)
         self.addNewButton.translatesAutoresizingMaskIntoConstraints = false
         self.addNewButton.layer.cornerRadius = 10
-        self.addNewButton.addTarget(self, action: .newButtonTapped, for: .touchUpInside)
+        self.addNewButton.addTarget(self, action: #selector(BoardsViewController.newButtonTapped), for: .touchUpInside)
         self.view.addSubview(self.addNewButton)
         self.addNewButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         
@@ -84,7 +79,7 @@ class BoardsViewController: UIViewController {
         self.view.addConstraints(buttonConstraintsH + buttonConstraintsV)
     }
     
-    @objc func newButtonTapped(_: UIButton) {
+    @objc func newButtonTapped() {
         self.performSegue(withIdentifier: "createBoardSegue", sender: nil)
     }
     

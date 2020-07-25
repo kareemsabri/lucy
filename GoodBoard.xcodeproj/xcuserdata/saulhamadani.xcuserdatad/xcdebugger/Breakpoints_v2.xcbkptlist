@@ -16,7 +16,71 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "18"
             endingLineNumber = "18"
-            landmarkName = "viewDidLoad()"
+            landmarkName = "CreateBoardViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "691CFC2B-6ACE-4478-BF8C-BD3ABF78A1D0 - 4eb8a6b3b02d4db5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoodBoard.CreateBoardViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; GoodBoard.CreateBoardViewController"
+                  moduleName = "GoodBoard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/saulhamadani/Desktop/GoodBoard/GoodBoard/Views/CreateBoard/CreateBoardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "399">
+               </Location>
+               <Location
+                  uuid = "691CFC2B-6ACE-4478-BF8C-BD3ABF78A1D0 - 528ca943a6839376"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoodBoard.CreateBoardViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;GoodBoard.CreateBoardViewController&gt;"
+                  moduleName = "GoodBoard"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/saulhamadani/Desktop/GoodBoard/GoodBoard/Views/CreateBoard/CreateBoardViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "340">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8BE692C5-BB21-4314-856C-64BBE89A04D2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoodBoard/Views/CreateBoard/CreateBoardViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "handlePinch(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B5D19317-E34E-4E35-ADA0-9DECC1CFD5FF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoodBoard/Views/CreateBoard/CreateBoardViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "handlePinch(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
