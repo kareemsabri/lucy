@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 class BoardViewCell: UICollectionViewCell {
     fileprivate let imageView = UIImageView()
     fileprivate let titleLabel = UILabel()
@@ -25,19 +26,20 @@ class BoardViewCell: UICollectionViewCell {
 private extension BoardViewCell {
     func commonInit() {
         self.contentView.backgroundColor = .white
-        self.contentView.layer.backgroundColor = UIColor.gray.cgColor
+        self.contentView.layer.borderColor = UIColor.lightGray.cgColor
+        self.contentView.layer.borderWidth = 1.0
         self.contentView.layer.cornerRadius = 10.0
         self.contentView.layer.masksToBounds = true
         
         //configure title label
         self.titleLabel.numberOfLines = 0
-        self.titleLabel.font = UIFont.systemFont(ofSize: 18.0)
+        self.titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
         self.titleLabel.textColor = .black
         self.titleLabel.textAlignment = .left
         
         //configure subtitle label
         self.subtitleLabel.numberOfLines = 0
-        self.subtitleLabel.font = UIFont.systemFont(ofSize: 12.0)
+        self.subtitleLabel.font = UIFont.systemFont(ofSize: 14.0)
         self.subtitleLabel.textColor = .gray
         self.subtitleLabel.textAlignment = .left
         
@@ -53,7 +55,7 @@ private extension BoardViewCell {
         let views = ["image" : self.imageView,
                      "title" : self.titleLabel,
                      "subtitle" : self.subtitleLabel]
-        let imageConstraintsH = NSLayoutConstraint.constraints(withVisualFormat: "H:|[image]|", options: [], metrics: nil, views: views)
+        let imageConstraintsH = NSLayoutConstraint.constraints(withVisualFormat: "H:|[image(==\(UIScreen.main.bounds.width-32))]|", options: [], metrics: nil, views: views)
         let imageConstraintsV = NSLayoutConstraint.constraints(withVisualFormat: "V:|[image]", options: [], metrics: nil, views: views)
         let titleConstraintsH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[title]-16-|", options: [], metrics: nil, views: views)
         let titleConstraintsV = NSLayoutConstraint.constraints(withVisualFormat: "V:[image]-16-[title]", options: [], metrics: nil, views: views)
