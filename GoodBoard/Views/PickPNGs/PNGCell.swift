@@ -33,8 +33,8 @@ private extension PNGCell {
         
         //constraints
         let views = ["image": self.imageView]
-        let imageConstraintsH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[image(100)]-|", options: [], metrics: nil, views: views)
-        let imageConstraintsV = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[image(100)]-|", options: [], metrics: nil, views: views)
+        let imageConstraintsH = NSLayoutConstraint.constraints(withVisualFormat: "H:|[image(100)]|", options: [], metrics: nil, views: views)
+        let imageConstraintsV = NSLayoutConstraint.constraints(withVisualFormat: "V:|[image(100)]|", options: [], metrics: nil, views: views)
         self.contentView.addConstraints(imageConstraintsH + imageConstraintsV)
     }
 }
