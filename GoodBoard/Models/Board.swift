@@ -14,12 +14,14 @@ class Board {
     var imageUrl: URL?
     var title: String
     var createdAt: Date
+    var updatedAt: Date
     
     init(id: Int, imageUrl: URL, title: String = "Untitled") {
         self.id = id
         self.imageUrl = imageUrl
         self.title = title
         self.createdAt = Date()
+        self.updatedAt = self.createdAt
     }
     
     init(id: Int) {
@@ -27,5 +29,6 @@ class Board {
         self.imageUrl = URL(string: "https://unsplash.com/photos/tTO-0qAo65w")
         self.title = "I'm a board"
         self.createdAt = Date()
+        self.updatedAt = self.createdAt
     }
 }

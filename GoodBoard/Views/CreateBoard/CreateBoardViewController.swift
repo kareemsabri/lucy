@@ -69,10 +69,39 @@ class CreateBoardViewController: UIViewController {
     }
     
     fileprivate func didSave() {
-        let now = Date()
-        self.lastSavedLabel.text = "Last saved \(self.formatter.string(from: now))"
-        self.delegate!.didSaveBoard(board: self.board)
+        self.lastSavedLabel.text = "Last saved \(self.formatter.string(from: self.board.updatedAt))"
+        self.delegate?.didSaveBoard(board: self.board)
     }
+    
+    fileprivate func save() {
+        let now = Date()
+        
+        UIGraphicsBeginImageContextWithOptions(self.boardBackground.bounds.size, false, UIScreen.main.scale)
+        self.boardBackground.drawHierarchy(in: self.boardBackground.bounds, afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        self.board.updatedAt = now
+        
+        if let data = image?.pngData() {
+            let imageName = "\(self.board.id).png"
+            let filename = getDocumentsDirectory().appendingPathComponent(imageName)
+            do {
+                try data.write(to: filename)
+                self.board.imageName = imageName
+            } catch {
+                print("unable to save")
+            }
+        }
+        
+        self.didSave()
+    }
+    
+    fileprivate func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+
 }
 
 extension CreateBoardViewController {
@@ -87,6 +116,6 @@ extension CreateBoardViewController: PickPNGsViewControllerDelegate {
     func didPickPNGs(images: [UIImage]) {
         images.forEach { self.boardBackground.addSubview(UIImageView(image: $0)) }
         self.dismiss(animated: true)
-        self.didSave()
+        self.save()
     }
 }

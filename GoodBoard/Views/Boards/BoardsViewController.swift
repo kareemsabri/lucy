@@ -111,8 +111,11 @@ extension BoardsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell: BoardViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "boardCell", for: indexPath) as! BoardViewCell
         
         let board = self.boards[indexPath.item]
-        if let _ = board.imageName {
-            
+        if let imageName = board.imageName {
+            let filename = getDocumentsDirectory().appendingPathComponent(imageName)
+            if let image = UIImage(contentsOfFile: filename.path) {
+                cell.configure(image: image)
+            }
         } else {
             cell.configure(image: UIImage(named: "Board")!)
         }
@@ -120,19 +123,20 @@ extension BoardsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.configure(subtitle: "Created \(self.formatter.string(from: board.createdAt))")
         return cell
     }
+    
+    fileprivate func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
 }
 
 extension BoardsViewController: CreateBoardViewControllerDelegate {
     func didSaveBoard(board: Board) {
-        let index = self.boards.firstIndex { (b: Board) -> Bool in
-            return board.id == b.id
-        }
-        if index != nil {
-            //do something
+        if let index = self.boards.firstIndex(where: { $0.id == board.id }) {
+            self.boards[index] = board
         } else {
             self.boards.append(board)
-            print(self.boards.count)
-            self.collectionView.reloadData()
         }
+        self.collectionView.reloadData()
     }
 }

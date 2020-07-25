@@ -31,6 +31,8 @@ private extension BoardViewCell {
         self.contentView.layer.cornerRadius = 10.0
         self.contentView.layer.masksToBounds = true
         
+        self.imageView.contentMode = .scaleAspectFill
+        
         //configure title label
         self.titleLabel.numberOfLines = 0
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
@@ -57,13 +59,14 @@ private extension BoardViewCell {
                      "subtitle" : self.subtitleLabel]
         let imageConstraintsH = NSLayoutConstraint.constraints(withVisualFormat: "H:|[image(==\(UIScreen.main.bounds.width-32))]|", options: [], metrics: nil, views: views)
         let imageConstraintsV = NSLayoutConstraint.constraints(withVisualFormat: "V:|[image]", options: [], metrics: nil, views: views)
+        let imageHeightConstraint = [NSLayoutConstraint(item: self.imageView, attribute: .height, relatedBy: .equal, toItem: self.imageView, attribute: .width, multiplier: 1.0, constant: 0.0)]
         let titleConstraintsH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[title]-16-|", options: [], metrics: nil, views: views)
         let titleConstraintsV = NSLayoutConstraint.constraints(withVisualFormat: "V:[image]-16-[title]", options: [], metrics: nil, views: views)
         let subtitleConstraintsH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[subtitle]-16-|", options: [], metrics: nil, views: views)
         let subtitleConstraintsV = NSLayoutConstraint.constraints(withVisualFormat: "V:[title]-8-[subtitle]-16-|", options: [], metrics: nil, views: views)
         
         //add constraints
-        self.contentView.addConstraints(imageConstraintsH + imageConstraintsV)
+        self.contentView.addConstraints(imageConstraintsH + imageConstraintsV + imageHeightConstraint)
         self.contentView.addConstraints(titleConstraintsH + titleConstraintsV)
         self.contentView.addConstraints(subtitleConstraintsH + subtitleConstraintsV)
     }
